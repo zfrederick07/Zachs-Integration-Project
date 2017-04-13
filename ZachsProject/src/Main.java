@@ -18,7 +18,7 @@ public class Main {
     int programNumber;
 
     mainMenu();
-    programNumber = scan.nextInt();
+    programNumber = Exceptions.intException(scan);
     scan.nextLine();
 
     // Switch statement to organize the menu options
@@ -336,7 +336,7 @@ public class Main {
       System.out.println("\t3) / (Division)");
       System.out.println("\t4) * (Multiplication)");
       System.out.println("\t5) % (Remainder)");
-      int mathOperation = scan.nextInt();
+      int mathOperation = Exceptions.intException(scan);
       
       if (mathOperation >= 1 && mathOperation <= 5) { /*&&(AND) is example of a conditional operator. Another one is || (OR)*/
           System.out.println(mathOperations(scan, mathOperation)); /* Use of a call*/
@@ -354,9 +354,13 @@ public class Main {
       System.out.println("\t2) Sum of Array");
       System.out.println("\t3) Average of Array");
       System.out.println("\t4) Index Number of a One-Demention Array");
-      System.out.println("\t5) Index Number of a Two-Demention Array");
-      int arrayChoice = scan.nextInt();
+      int arrayChoice = Exceptions.intException(scan);
       System.out.println(doArrayWork(userString, arrayChoice, scan));
+      break;
+      
+    case 6:
+      System.out.println("What number are you looking for?");
+      System.out.println(twoDIndex());
       break;
       
     default:
@@ -397,7 +401,7 @@ public class Main {
     person1.setName(userName);
     
     System.out.println("\nHow old are you?");
-    int userAge = scan.nextInt();
+    int userAge = Exceptions.genericIntException(scan);
     scan.nextLine();
     person1.setAge(userAge);
     
@@ -406,7 +410,7 @@ public class Main {
     person1.setMajor(userMajor);
     
     System.out.println("\nHow many years have you been learning about Java?");
-    int userYears = scan.nextInt();
+    int userYears = Exceptions.genericIntException(scan);
     scan.nextLine();
     person1.setjavaYears(userYears);
     
@@ -423,7 +427,8 @@ public class Main {
     System.out.println("\t2) Fibonacci Sequence To n Number.");
     System.out.println("\t3) Word Count");
     System.out.println("\t4) Basic Calculator");
-    System.out.println("\t5) Work With Arrays");
+    System.out.println("\t5) Work With 1D Arrays");
+    System.out.println("\t6) Work With 2D Arrays");
   }
 
   public static String doArrayWork(String userString, int arrayChoice, Scanner scan) {
@@ -507,10 +512,13 @@ public class Main {
   
   public static int[][] twoDIndex() {
     Random ran = new Random();
-    int i = ran.nextInt(10);
-    int j = ran.nextInt(10);
-    int[][] twoDArray = new int[i][j]; 
+    int[][] twoDArray = new int[10][10]; 
     
+    for(int i = 0; i < twoDArray.length; i++) {
+      for (int j = 0; j < twoDArray[i].length; j++) {
+        twoDArray[i][j] = ran.nextInt(11);
+      }
+    }
     return twoDArray;
   }
   
@@ -523,7 +531,7 @@ public class Main {
   
   public static String fibNumbers (Scanner scan, String userName) {
     System.out.println("How many numbers of the Fibonacci sequence do you want " + userName + "?");
-    int topNumber = scan.nextInt();
+    int topNumber = Exceptions.intException(scan);
     int firstNumber = 0;
     int secondNumber = 1;
     int count = 1;
@@ -548,8 +556,8 @@ public class Main {
   
   public static String mathOperations (Scanner scan, int mathOperation) {
     System.out.println("Please enter your two numbers.");
-    double firstDouble = scan.nextDouble();
-    double secondDouble = scan.nextDouble();
+    double firstDouble = Exceptions.doubleException(scan);
+    double secondDouble = Exceptions.doubleException(scan);
     double mathAnswer;
     String retVal = "";
     
