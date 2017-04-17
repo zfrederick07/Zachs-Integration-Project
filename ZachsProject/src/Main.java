@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -18,13 +19,12 @@ public class Main {
     int programNumber;
 
     mainMenu();
-    programNumber = Exceptions.intException(scan);
+    programNumber = Exceptions.genericIntException(scan);
     scan.nextLine();
 
     // Switch statement to organize the menu options
     switch (programNumber) {
     case 1:// Java Test
-      System.out.println("You have been learing Java for " + userInfo.getjavaYears() + " year(s).");
       System.out.println("Lets test those skills!");
       short correctAnswer = 0;
 
@@ -299,20 +299,47 @@ public class Main {
       System.out.println("\tB) Dictionary");
       System.out.println("\tC) Blueprint");
       System.out.println("\tD) Contract");
-      String answerTwinty = scan.nextLine();
-      if (answerTwinty.equalsIgnoreCase("D")) {
+      String answerTwenty = scan.nextLine();
+      if (answerTwenty.equalsIgnoreCase("D")) {
         correctAnswer = countingCorrect(correctAnswer);
       } else {
         System.out.println("Sorry that is incorrect.");
         System.out.println("The correct answer was D.");
       }
-      System.out.println("\nYou got a score of: " + correctAnswer +"/20");
       
-      if (correctAnswer >= 18) {
+      System.out.println("\n Question 21: What is Inheritance in Java?");//Inheritance in Java
+      System.out.println("\tA) The copying of classes");
+      System.out.println("\tB) The ability to use methods and fields from a parent class");
+      System.out.println("\tC) Inheriting a program from someone else");
+      System.out.println("\tD) Doesnt exist in Java");
+      String answerTwentyOne = scan.nextLine();
+      if (answerTwentyOne.equalsIgnoreCase("B")) {
+        correctAnswer = countingCorrect(correctAnswer);
+      } else {
+        System.out.println("Sorry that is incorrect.");
+        System.out.println("The correct answer was D.");
+      }
+      
+      System.out.println("\n Question 22: What is Polymorphism in Java?");//Polymorphism in Java
+      System.out.println("\tA) The ability to create new behaviors and share existing ones in a subclass");
+      System.out.println("\tB) Only exists in Biology");
+      System.out.println("\tC) The ability to use methods and fields from a parent class");
+      System.out.println("\tD) Morphing a class into something else");
+      String answerTwentyTwo = scan.nextLine();
+      if (answerTwentyTwo.equalsIgnoreCase("A")) {
+        correctAnswer = countingCorrect(correctAnswer);
+      } else {
+        System.out.println("Sorry that is incorrect.");
+        System.out.println("The correct answer was D.");
+      }
+      
+      System.out.println("\nYou got a score of: " + correctAnswer +"/22");
+      
+      if (correctAnswer >= 20) {
       System.out.println("\nGreat Job " + userName + "!" );
-      } else if (correctAnswer >= 14 && correctAnswer <= 17) {
+      } else if (correctAnswer >= 16 && correctAnswer <= 19) {
         System.out.println("\n" + userName + ", it looks like you need to sharpen up your skills.");
-      } else if (correctAnswer >= 10 && correctAnswer <= 13) {
+      } else if (correctAnswer >= 10 && correctAnswer <= 15) {
         System.out.println("\nSorry " + " you need to study a lot more.");
       } else {
         System.out.println("\nYou should go back and start from the beginning.");
@@ -329,23 +356,11 @@ public class Main {
       System.out.println(wordCount(scan, userText));
       break;
 
-    case 4: // math operations (Basic Calulator)
-      System.out.println("Which operation would you like to use?");
-      System.out.println("\t1) + (Addition)");
-      System.out.println("\t2) - (Subtraction)");
-      System.out.println("\t3) / (Division)");
-      System.out.println("\t4) * (Multiplication)");
-      System.out.println("\t5) % (Remainder)");
-      int mathOperation = Exceptions.intException(scan);
-      
-      if (mathOperation >= 1 && mathOperation <= 5) { /*&&(AND) is example of a conditional operator. Another one is || (OR)*/
-          System.out.println(mathOperations(scan, mathOperation)); /* Use of a call*/
-      } else {
-        System.out.println("Invaild Number.");
-      } 
+    case 4: // math operations (Basic Calculator)
+      Math_Calculation.main(args);
       break;
       
-    case 5: /*Smallest value in array, sum of values in array, search array and identify index number*/
+    case 5: //Smallest value in array, sum of values in array, search array and identify index number
       System.out.println("Please enter a series of numbers seperated by a comma.");
       String userString = scan.nextLine();
 
@@ -359,10 +374,13 @@ public class Main {
       break;
       
     case 6:
-      System.out.println("What number are you looking for?");
-      System.out.println(twoDIndex());
+      ArrayWork.main(args);
       break;
       
+    case 7:
+      Queues.main(args);
+      break;
+
     default:
       System.out.println("Sorry, that is not an option.");
       break;
@@ -380,7 +398,8 @@ public class Main {
           }
         x = 1;
       } catch (Exception e) {
-          System.out.println("Please enter a number.");
+          System.out.println("That is not a number.");
+          scan.nextLine();
       } 
   } while(x == 0);
  }
@@ -399,25 +418,7 @@ public class Main {
     System.out.println("\nPlease enter your name!");
     String userName = scan.nextLine();
     person1.setName(userName);
-    
-    System.out.println("\nHow old are you?");
-    int userAge = Exceptions.genericIntException(scan);
-    scan.nextLine();
-    person1.setAge(userAge);
-    
-    System.out.println("\nWhat is your Major?");
-    String userMajor = scan.nextLine();
-    person1.setMajor(userMajor);
-    
-    System.out.println("\nHow many years have you been learning about Java?");
-    int userYears = Exceptions.genericIntException(scan);
-    scan.nextLine();
-    person1.setjavaYears(userYears);
-    
-    System.out.println("\nFinally what job do you plan on getting after college?");
-    String userJob = scan.nextLine();
-    person1.setJob(userJob);
-    
+        
     System.out.println("\nWelcome " + userInfo.getName() + "!");
   }
   
@@ -429,10 +430,11 @@ public class Main {
     System.out.println("\t4) Basic Calculator");
     System.out.println("\t5) Work With 1D Arrays");
     System.out.println("\t6) Work With 2D Arrays");
+    System.out.println("\t7) Work With Queues");
   }
 
   public static String doArrayWork(String userString, int arrayChoice, Scanner scan) {
-    String[] userArray = userString.split(","); /*an array*/
+    String[] userArray = userString.split(","); //an array and string processing
     String retVal = "";
     retVal = "You entered: {" + userString + "}";
     switch (arrayChoice) {
@@ -510,18 +512,6 @@ public class Main {
     return "Your number was not found";
   }
   
-  public static int[][] twoDIndex() {
-    Random ran = new Random();
-    int[][] twoDArray = new int[10][10]; 
-    
-    for(int i = 0; i < twoDArray.length; i++) {
-      for (int j = 0; j < twoDArray[i].length; j++) {
-        twoDArray[i][j] = ran.nextInt(11);
-      }
-    }
-    return twoDArray;
-  }
-  
   public static String wordCount (Scanner scan, String userText) {
     String retVal = "";
     String[] wordCountArray = userText.split(" ");
@@ -553,40 +543,10 @@ public class Main {
     }
     return retVal;
   }
-  
-  public static String mathOperations (Scanner scan, int mathOperation) {
-    System.out.println("Please enter your two numbers.");
-    double firstDouble = Exceptions.doubleException(scan);
-    double secondDouble = Exceptions.doubleException(scan);
-    double mathAnswer;
-    String retVal = "";
-    
-    if (mathOperation == 1) {
-      mathAnswer = firstDouble + secondDouble;
-      retVal = firstDouble + " + " + secondDouble + " = " + mathAnswer;
-    } else if (mathOperation == 2) {
-      mathAnswer = firstDouble - secondDouble;
-      retVal = firstDouble + " - " + secondDouble + " = " + mathAnswer;
-    } else if (mathOperation == 3) {
-        mathAnswer = firstDouble / secondDouble;
-        retVal = firstDouble + " / " + secondDouble + " = " + mathAnswer;
-    } else if (mathOperation == 4) {
-      mathAnswer = firstDouble * secondDouble;
-      retVal = firstDouble + " * " + secondDouble + " = " + mathAnswer;
-    } else if (mathOperation == 5) {
-      mathAnswer = firstDouble % secondDouble;
-      retVal = firstDouble + " % " + secondDouble + " = " + mathAnswer;
-      }
-    return retVal;
-  }
 }
 
 class userInfo { /*use of getters and setters*/
   private static String userName;
-  private static int userAge;
-  private static String userMajor;
-  private static int javaYears;
-  private static String userJob;
   
   public void setName(String userInput) {
    userInfo.userName = userInput;
@@ -594,28 +554,5 @@ class userInfo { /*use of getters and setters*/
   public static String getName() {
     return userName;
   }
-  public void setAge(int userInput) {
-    userInfo.userAge = userInput;
-     }
-  public static int getAge() {
-    return userAge;
-  }
-  public void setMajor(String userInput) {
-    userInfo.userMajor = userInput;
-     }
-  public static String getMajor() {
-    return userMajor;
-  }
-  public void setjavaYears(int userInput) {
-    userInfo.javaYears = userInput;
-     }
-  public static int getjavaYears() {
-    return javaYears;
-  }
-  public void setJob(String userInput) {
-    userInfo.userJob = userInput;
-     }
-  public static String getJob() {
-    return userJob;
-  }
+
 }

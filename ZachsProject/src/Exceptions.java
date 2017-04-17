@@ -1,7 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Exceptions {
+public class Exceptions {//Class of exceptions for main program
   Scanner s = new Scanner(System.in);
   
   public static int intException(Scanner s) {
@@ -25,17 +25,16 @@ public class Exceptions {
   
   public static double doubleException(Scanner s) {
     double userDouble = 0;
-    boolean pass = false;
-    System.out.println("Please enter your number."); 
+    boolean pass = false; 
     do {
       try {
         userDouble = s.nextDouble(); 
         pass = true;
       } catch(InputMismatchException ex) {
-          System.out.println("You did not enter an Interger. Please enter one.");
+          System.out.println("You did not enter an number. Please enter one.");
           s.nextLine();
       } catch(Exception e) {
-          System.out.println("Please enter an Integer.");
+          System.out.println("Please enter an number.");
           s.nextLine();
       }
     } while (pass == false);
