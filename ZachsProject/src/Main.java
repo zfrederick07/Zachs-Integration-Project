@@ -1,5 +1,3 @@
-import java.util.Arrays;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -389,10 +387,10 @@ public class Main {
     int x = 0;
     do {
       try {
-        System.out.println("\nPress any number to go back to main menu and 2 to exit.");
-        if (scan.nextInt() == 2) {
+        System.out.println("\nPress any number to go back to main menu and 0 to exit.");
+        if (scan.nextInt() == 0) {
           System.out.println("Goodbye " + userName + "!");
-          System.exit(2);
+          System.exit(0);
         } else {
             program(args, scan, userName);
           }
@@ -521,24 +519,27 @@ public class Main {
   
   public static String fibNumbers (Scanner scan, String userName) {
     System.out.println("How many numbers of the Fibonacci sequence do you want " + userName + "?");
-    int topNumber = Exceptions.intException(scan);
-    int firstNumber = 0;
-    int secondNumber = 1;
-    int count = 1;
+    long topNumber = Exceptions.genericIntException(scan);
+    long firstNumber = 0;
+    long secondNumber = 1;
+    long count = 1;
     String retVal ="";
 
     if (topNumber == 1) {
-      retVal= "0";
+      retVal= "F(0) = 0";
     } else if (topNumber == 2) {
-      retVal ="0,1";
+        retVal =  "F(0) = 0, F(1) = 1";
     } else {
-      retVal = "0,1";
-      while (count <= (topNumber - 2)) { /*While loop*/
-        int fibNumber = firstNumber + secondNumber;
-        firstNumber = secondNumber;
-        secondNumber = fibNumber;
-        retVal = retVal + "," + fibNumber;
-        count++;
+        retVal = " F(0) = 0, F(1) = 1";
+        while (count <= (topNumber - 2)) { /*While loop*/
+          long fibNumber = firstNumber + secondNumber;
+          firstNumber = secondNumber;
+          secondNumber = fibNumber;
+          retVal = retVal +" F("+ (count + 1) + ") = " + fibNumber + ",";
+         if((count+2)%5 == 0) {
+           retVal += "\n";
+         }
+          count++;
       }
     }
     return retVal;

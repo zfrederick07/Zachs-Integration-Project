@@ -4,9 +4,18 @@ public class ArrayWork {
 
   public static void main(String[] args) {//Creates a 2D array with random integers and gives the index of the searched integer
     Scanner scan = new Scanner(System.in);
-    
-    System.out.println("What integer 0 to 100 are you looking for?");
-    int userNumber = Exceptions.genericIntException(scan);
+    int x = 0;
+    int userNumber = 0;
+    do{
+      System.out.println("What integer 0 to 100 are you looking for?");
+      userNumber = Exceptions.genericIntException(scan);
+      if(userNumber >= 0 && userNumber <= 100) {
+        x = 1;
+      } else {
+        System.out.println("That integer is not between 0 and 100.");
+        System.out.println();
+      }
+    }while(x == 0);
     
     System.out.println();
     
