@@ -447,9 +447,9 @@ public class Main {
       retVal = retVal + "\tAverage of the Array: " + sumArray(toFloatArray(userArray)) / (userArray.length);
       break;
     case 4:
-      System.out.println("What number are you searching for?");
-      float userNumber = scan.nextFloat();
-      retVal = retVal + "\t" + findIndex(toFloatArray(userArray), userNumber);
+        System.out.println("What number are you searching for?");
+        float userNumber = scan.nextFloat();
+        retVal = retVal + "\t" + findIndex(toFloatArray(userArray), userNumber);
       break;
     default:
       break;
